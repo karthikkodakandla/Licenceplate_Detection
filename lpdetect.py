@@ -12,13 +12,18 @@ from imageai.Detection.Custom import CustomObjectDetection
 from tempfile import NamedTemporaryFile
 import streamlit_theme as stt
 
+
 stt.set_theme({'primary':'#262730','textColor':'#FFFFFF'})
 #main_bg = "background.jpg"
 main_bg='https://previews.123rf.com/images/eric4094/eric40940903/eric4094090300005/4570324-abstract-design-yellow-colour-background.jpg'
 main_bg_ext = "jpg"
-def detector_model():
-    !wget "https://capstoneprojectmksk.s3.amazonaws.com/detection_model-ex-015--loss-0006.450.h5"
-    model_path = '/detection_model-ex-005--loss-0003.767.h5'
+weburl = "https://capstoneprojectmksk.s3.amazonaws.com/detection_model-ex-015--loss-0006.450.h5"
+filename = weburl.split('/')[-1]
+urllib.request.urlretrieve(weburl, filename)
+
+
+def detector_model():    
+    model_path = filename
     json_path = 'model/detection_config.json'
     
     detector = CustomObjectDetection()
